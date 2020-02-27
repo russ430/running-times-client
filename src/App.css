@@ -1,0 +1,34 @@
+.main-page {
+  background-color: #96ddda;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.page-title {
+  display: block !important;
+  text-align: center;
+}
+
+.form-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
+}
+
+.recentRunFeed {
+  border-bottom: 1px solid #eee;
+}
+
+.recentRunFeed:last-child {
+  border-bottom: none;
+}

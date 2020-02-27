@@ -1,0 +1,8 @@
+{
+  "short_name": "We Run Here.",
+  "name": "We Run Here. A social network for runners.",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
