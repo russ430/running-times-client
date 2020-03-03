@@ -32,7 +32,7 @@ function MenuBar() {
       ) : null}
       <Menu.Menu position='right'>
         {/* if the user is logged in, render a log out button.
-        if the user is logged out, render the login fields */}
+        if the user is logged out, render the login button */}
         {user ? (
           <Menu.Item
             name='logout'

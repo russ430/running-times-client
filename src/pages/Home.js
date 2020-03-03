@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid, Transition, Card, Item, Loader, Icon } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 import Register from './Register';
 import { AuthContext } from '../context/auth';
@@ -22,12 +23,12 @@ function Home() {
 
   return (
     <>
-    <Grid centered columns={2}>
+    <Container>
       {!user && (
-        <header style={{ padding: '2rem 0 6rem 1rem', display: 'flex', textAlign: 'left' }}>
-          <div style={{ width: '45%', margin: '0 auto' }}>
-            <h1 style={{ textAlign: 'center', fontWeight: '400', fontSize: '5rem'}}>We Run Here.</h1>
-            <h2 style={{ textAlign: 'left', fontWeight: '400' }}>Whether you're a lifelong runner or just getting started, welcome to your new home for all things running!</h2>
+        <Header>
+          <Welcome>
+            <Title>We Run Here.</Title>
+            <Subtitle>Whether you're a lifelong runner or just getting started, welcome to your new home for all things running!</Subtitle>
             <div style={{ display: 'flex', justifyContent: 'center', width: '90%', margin: '0 auto' }}>
               <div>
                 <Icon name="clipboard list" size="massive" color="blue" style={{ margin: '2rem 0' }}/>
@@ -44,12 +45,10 @@ function Home() {
                 </div>
               </div>  
             </div>
-            <h2 style={{ marginTop: '3rem', fontStyle: 'italic', textAlign: 'left', fontWeight: '400' }}>We look forward to meeting you! Scroll down below to see what our community has been up to and click on a username or picture to see their profile!</h2>
-          </div>
-        <div style={{ width: '45%', marginLeft: '0 auto', paddingTop: '2rem' }}>
+            <Subtitle>We look forward to meeting you! Scroll down below to see what our community has been up to and click on a username or picture to see their profile!</Subtitle>
+          </Welcome >
           <Register />
-        </div>
-      </header>
+      </Header>
       )}
       {user && (
           <Grid.Column width={4}>
@@ -84,9 +83,46 @@ function Home() {
             </Grid.Row>
           </Grid>
         </Grid.Column>
-      </Grid>
+      </Container>
     </>
   )
 };
+
+const Header = styled.header`
+  padding: 2rem 0 6rem 0;
+  display: flex;
+  text-align: left;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    padding: 0;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 5rem;
+  font-weight: 400;
+  text-align: center;
+`;
+
+const Subtitle = styled(Title)`
+  font-size: 1.8rem;
+`;
+
+const Welcome = styled.div`
+  width: 45%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1000px) {
+    width: 95%;
+    padding: 0 0.5rem;
+    margin: 0;
+  }
+`;
+
+const Container = styled.div`
+  margin: 0;
+  padding: 0;
+`;
 
 export default Home;

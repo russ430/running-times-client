@@ -2,14 +2,6 @@
   background-color: #96ddda;
 }
 
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: white;
-  overflow: hidden;
-  padding: 2rem;
-}
-
 .page-title {
   display: block !important;
   text-align: center;

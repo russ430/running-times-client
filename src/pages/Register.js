@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Form, Button, Modal } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 
 import { AuthContext } from '../context/auth';
 import { useForm } from '../util/hooks';
@@ -54,7 +55,7 @@ function Register(props) {
   };
 
   return (
-    <div className="form-container">
+    <Container>
       <Form onSubmit={submitHandler} noValidate className={loading ? "loading" : ''}>
         <h1>Create a New Account</h1>
         <Form.Input
@@ -133,9 +134,23 @@ function Register(props) {
               ))}
             </ul>
           </div>)}
-    </div>
+    </Container>
   )
 };
+
+const Container = styled.div`
+  width: 400px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  @media screen and (max-width: 1000px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 90%;
+  }
+`;
 
 const REGISTER_USER = gql`
   mutation register(

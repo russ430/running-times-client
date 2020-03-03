@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
@@ -21,7 +22,7 @@ function App() {
       <Router>
         <div className="main-page">
           <MenuBar />
-          <div className="content-container">
+          <Content>
             <Route exact path='/' component={Home} />
             {/* These AuthRoutes will check to see if the user is logged in.
                 If the user is in fact logged in the AuthRoute will redirect the user 
@@ -30,12 +31,25 @@ function App() {
             <AuthRoute exact path='/register' component={Register} />
             <Route exact path='/profile/:username' component={Profile} />
             <Route exact path="/times/:timeId" component={SingleTime } />
-          </div>
+          </Content>
         </div>
         <Footer />
       </Router>
     </AuthProvider>
   );
 }
+
+const Content = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+  padding: 2rem;
+
+  @media screen and (max-width: 768px) {
+    overflow: auto;
+    padding: 0;
+  }
+`;
 
 export default App;
