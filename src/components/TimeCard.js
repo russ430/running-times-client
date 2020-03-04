@@ -201,16 +201,12 @@ const ContentBody = styled.p`
   padding: 0;
   margin: 1rem 0;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 800px) {
     font-size: 1.2rem;
   }
 
-  @media screen and (max-width: 800px) {
-    font-size: 1rem;
-  }
-
   @media screen and (max-width: 600px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 `;
 

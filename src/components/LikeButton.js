@@ -32,7 +32,7 @@ function LikeButton({ user,  time: { id, likeCount, likes } }) {
       </Button>
     )
   ) : (
-    <Button to="/login" color='blue' basic>
+    <Button to="/login" color='blue'>
       <Icon name='heart' />
     </Button>
   )
