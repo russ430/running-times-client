@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Button, Icon, Label } from 'semantic-ui-react';
+import { Icon, Label } from 'semantic-ui-react';
+import styled from 'styled-components';
+
 import MyPopup from '../util/MyPopup';
 
 function LikeButton({ user,  time: { id, likeCount, likes } }) {
@@ -21,12 +23,12 @@ function LikeButton({ user,  time: { id, likeCount, likes } }) {
 
   const likeButton = user ? (
     liked ? (
-      <Button color='blue'>
-        <Icon name='heart' />
+      <Button>
+        <Icon name='heart' color="blue"/>
       </Button>
     ) : (
-      <Button color='blue' basic>
-        <Icon name='heart' />
+      <Button>
+        <Icon name='heart' color="grey"/>
       </Button>
     )
   ) : (
@@ -37,12 +39,10 @@ function LikeButton({ user,  time: { id, likeCount, likes } }) {
 
   return (
     <MyPopup content={liked ? "Unlike" : "Like"}>
-      <Button as='div' labelPosition='right' onClick={likeTime}>
+      <Container onClick={likeTime} isLiked={liked}>
         {likeButton}
-        <Label basic color='blue' pointing='left'>
-          {likeCount}
-        </Label>
-      </Button>
+        <span>{likeCount}</span>
+      </Container>
     </MyPopup>
   );
 };
@@ -56,6 +56,34 @@ const LIKE_TIME_MUTATION = gql`
         username
       }
       likeCount
+    }
+  }
+`;
+
+const Container = styled.div`
+  margin: 0 0.5rem;
+  cursor: pointer;
+  display: flex;
+
+  span {
+    color: ${props => props.isLiked ? '#2185d0' : 'grey'};
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 600px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const Button = styled.div`
+  border: none;
+  cursor: pointer;
+
+  .icon {
+    font-size: 1.5em;
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.2em;
     }
   }
 `;

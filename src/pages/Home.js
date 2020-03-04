@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <>
-    <Container>
+    <Container user={user}>
       {!user && (
         <Header>
           <Welcome>
@@ -67,22 +67,16 @@ function Home() {
             </Grid.Row>
           </Grid.Column>
         )}
-        <Grid.Column width={12} style={{ paddingBottom: '6rem' }}>
-          <Grid columns={3}>
-            <Grid.Row className="page-title">
-              <h1>Recent Activity</h1>
-            </Grid.Row>
-            <Grid.Row >
-              {loading ? <Loader style={{ marginTop: '4rem' }} active inline="centered" size="big" /> : (
-                <Transition.Group animation='fade' as={Item.Group} divided duration={200} style={{ width: '95%', margin: '0 auto' }}>
-                  {firstSixTimes.map(time => (
-                    <TimeCard key={time.id} type="home" data={time} />
-                  ))}
-                </Transition.Group>
-              )}
-            </Grid.Row>
-          </Grid>
-        </Grid.Column>
+        <RunFeed>
+        <h1 style={{ textAlign: 'center' }}>Recent Activity</h1>
+          {loading ? <Loader style={{ marginTop: '4rem' }} active inline="centered" size="big" /> : (
+            <Transition.Group animation='fade' as={Item.Group} divided duration={200} style={{ width: '95%', margin: '0 auto' }}>
+              {firstSixTimes.map(time => (
+                <TimeCard key={time.id} type="home" data={time} />
+              ))}
+            </Transition.Group>
+          )}
+        </RunFeed>
       </Container>
     </>
   )
@@ -123,6 +117,24 @@ const Welcome = styled.div`
 const Container = styled.div`
   margin: 0;
   padding: 0;
+  display: ${props => props.user ? 'flex' : null};
+`;
+
+const RunFeed = styled.div`
+  width: 70%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1100px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 98%;
+  }
 `;
 
 export default Home;
