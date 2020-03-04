@@ -10,7 +10,7 @@ function CommentButton({ data: { commentCount, id }}) {
   return(
     <MyPopup content="Comment on post">
       <Container>
-        <Button>
+        <Button to="/login">
           <Icon name='comments' color="teal"/>
         </Button>
         <span>{commentCount}</span>
@@ -34,7 +34,7 @@ const Container = styled.div`
   }
 `;
 
-const Button = styled.div`
+const Button = styled(Link)`
   border: none;
   cursor: pointer;
 

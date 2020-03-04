@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Icon, Label } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import MyPopup from '../util/MyPopup';
@@ -32,7 +32,7 @@ function LikeButton({ user,  time: { id, likeCount, likes } }) {
       </Button>
     )
   ) : (
-    <Button as={Link} to="/login" color='blue' basic>
+    <Button to="/login" color='blue' basic>
       <Icon name='heart' />
     </Button>
   )
@@ -75,7 +75,7 @@ const Container = styled.div`
   }
 `;
 
-const Button = styled.div`
+const Button = styled(Link)`
   border: none;
   cursor: pointer;
 
