@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid, List, Placeholder, Loader } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 import { FETCH_PBEST_QUERY } from '../../util/graphql';
 import ListItem from './PersonalBests/ListItem';
@@ -38,11 +39,11 @@ function PersonalBests({ home, username, refetchData }) {
         </Placeholder>
         )
     ) : (data ? (pBestData.postedYet ? (
-      <Grid columns={3} style={{ padding: '1.5rem 0', borderBottom: '1px solid #eee' }}>
+      <BestsBoxProfile>
         <GridItem descriptor="miles" label="Farthest Run">{pBestData.longestRunMiles}</GridItem>
         <GridItem label="Longest Run">{pBestData.longestRunTime}</GridItem>
         <GridItem label="Quickest Pace">{pBestData.quickestPace}</GridItem>
-      </Grid>
+      </BestsBoxProfile>
     ) : <h1 style={{ textAlign: 'center', fontWeight: '400', fontStyle: 'italic' }}>I haven't posted any times yet!</h1>
     ) : (
         <Loader active inline="centered" size="big" style={{ marginTop: '4rem' }} />
@@ -50,5 +51,20 @@ function PersonalBests({ home, username, refetchData }) {
     </>
   )
 };
+
+const BestsBoxProfile = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+
+  @media screen and (max-width: 1000px) {
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 1.5rem 0;
+  }
+`;
 
 export default PersonalBests;

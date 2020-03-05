@@ -140,7 +140,7 @@ function Register(props) {
 
 const Container = styled.div`
   width: 400px;
-  margin: 0 auto;
+  margin: 1rem auto;
 
   @media screen and (max-width: 1000px) {
     width: 70%;

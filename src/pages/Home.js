@@ -66,7 +66,7 @@ function Home() {
         <RunFeed>
         <h1 style={{ textAlign: 'center' }}>Recent Activity</h1>
           {loading ? <Loader style={{ marginTop: '4rem' }} active inline="centered" size="big" /> : (
-            <Transition.Group animation='fade' as={Item.Group} divided duration={200} style={{ width: '95%', margin: '0 auto' }}>
+            <Transition.Group animation='fade' as={Item.Group} divided duration={200} style={{ width: '100%' }}>
               {firstSixTimes.map(time => (
                 <TimeCard key={time.id} type="home" data={time} />
               ))}
@@ -127,12 +127,11 @@ const Subtitle = styled(Title)`
 
 const Welcome = styled.div`
   width: 45%;
-  margin: 0 auto;
+  margin: 1rem auto;
 
   @media screen and (max-width: 1000px) {
     width: 95%;
     padding: 0 0.5rem;
-    margin: 0 auto;
   }
 `;
 
@@ -184,7 +183,7 @@ const DataText = styled.p`
 
 const RunFeed = styled.div`
   width: 70%;
-  margin: 0 auto;
+  margin: 1rem auto;
 
   @media screen and (max-width: 1100px) {
     width: 80%;
@@ -195,7 +194,7 @@ const RunFeed = styled.div`
   }
 
   @media screen and (max-width: 700px) {
-    width: 98%;
+    width: 100%;
   }
 `;
 

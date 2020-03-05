@@ -44,11 +44,11 @@ const Content = styled.div`
   margin: 0 auto;
   background-color: white;
   overflow: hidden;
-  padding: 2rem;
+  padding: 1.5rem;
 
   @media screen and (max-width: 768px) {
     overflow: auto;
-    padding: 0;
+    padding: 1rem;
   }
 `;
 

@@ -199,7 +199,7 @@ const ContentBody = styled.p`
   overflow-wrap: break-word;
   font-size: 1.4rem;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 
   @media screen and (max-width: 800px) {
     font-size: 1.2rem;
@@ -233,6 +233,11 @@ const Left = styled.div`
 
   @media screen and (max-width: 600px) {
     font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 1rem;
     padding: 0.2rem 0.4rem;
   }
 `;
