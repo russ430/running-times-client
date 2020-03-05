@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth';
 
@@ -38,7 +40,7 @@ function Login(props) {
   }
 
   return (
-    <div className="form-container">
+    <Container>
       <Form onSubmit={onLoginSubmitHandler} noValidate className={loading ? "loading" : ''}>
         <h1>Login</h1>
         <Form.Input
@@ -69,9 +71,23 @@ function Login(props) {
               ))}
             </ul>
           </div>)}
-    </div>
+          <Register>Don't have an account yet? Sign up for one <Link to="/register">here</Link>.</Register>
+    </Container>
   )
 };
+
+const Container = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 0;
+`;
+
+const Register = styled.p`
+  font-size: 1.5rem;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 0 1rem;
+`;
 
 const LOGIN_USER = gql`
   mutation login(

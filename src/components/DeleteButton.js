@@ -45,7 +45,7 @@ function DeleteButton({ timeId, commentId, callback }) {
   return (
     <>
       <MyPopup content={commentId ? "Delete comment" : "Delete post"}>
-          <Button style={{ position: 'absolute', top: '0', right: '0' }} as="div" color="red" onClick={() => setConfirmOpen(true)}>
+          <Button size="tiny" style={{ position: 'absolute', top: '0', right: '0', padding: '0.5rem 1rem' }} as="div" color="red" onClick={() => setConfirmOpen(true)}>
             <Icon name="trash" style={{ margin: '0' }} />
           </Button>
       </MyPopup>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Form, Button } from 'semantic-ui-react';
+import styled from 'styled-components';
 import gql from 'graphql-tag';
-import { FETCH_POSTS_QUERY } from '../util/graphql';
 
+import { FETCH_POSTS_QUERY } from '../util/graphql';
 import { useForm } from '../util/hooks';
 
 function PostForm(props) {
@@ -61,7 +62,7 @@ function PostForm(props) {
 
   return (
     <>
-      <Form onSubmit={onFormSubmitHandler}>
+      <Form style={{ width: '100%' }} onSubmit={onFormSubmitHandler}>
         <h2>Post a new time:</h2>
         <Form.Field>
           <Form.Input

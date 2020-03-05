@@ -9,10 +9,12 @@ function MenuBar() {
 
   return (
     <Menu>
-      <MenuItem to='/'>Home</MenuItem>
-      {user ? (
-        <MenuItem to={`/profile/${user.username}`}>My Profile</MenuItem>
-      ) : null}
+      <div style={{ padding: '1rem 0'}}>
+        <MenuItem to='/'>Home</MenuItem>
+        {user ? (
+          <MenuItem to={`/profile/${user.username}`}>My Profile</MenuItem>
+        ) : null}
+      </div>
       <div>
         {/* if the user is logged in, render a log out button.
         if the user is logged out, render the login button */}

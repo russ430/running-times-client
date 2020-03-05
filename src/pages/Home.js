@@ -24,7 +24,7 @@ function Home() {
   return (
     <>
     <Container user={user}>
-      <Title>We Run Here.</Title>
+      <Title className="title">We Run Here.</Title>
       {!user && (
         <Header>
           <Welcome>
@@ -47,12 +47,12 @@ function Home() {
       </Header>
       )}
       {user && (
-          <Grid.Column width={4}>
-            <Grid.Row>
+          <LeftColumn>
+            <PostContainer>
               <PostForm onSubmitHandler={() => setRefetchData(true)} />
-            </Grid.Row>
-            <Grid.Row>
-              <Card style={{ marginTop: '2rem' }}>
+            </PostContainer>
+            <StatsContainer>
+              <Card>
                 <Card.Content>
                   <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Stats</h2>
                   <BasicStats username={user.username} refetchData={refetchData}/>
@@ -60,8 +60,8 @@ function Home() {
                   <PersonalBests home username={user.username} refetchData={refetchData}/>
                 </Card.Content>
               </Card>
-            </Grid.Row>
-          </Grid.Column>
+            </StatsContainer>
+          </LeftColumn>
         )}
         <RunFeed>
         <h1 style={{ textAlign: 'center' }}>Recent Activity</h1>
@@ -77,13 +77,18 @@ function Home() {
     </>
   )
 };
+
 const Container = styled.div`
   margin: 0;
   padding: 1rem 0;
   display: ${props => props.user ? 'flex' : null};
 
-  h1 {
+  .title {
     display: ${props => props.user ? 'none' : null};
+  }
+
+  @media screen and (max-width: 730px) {
+    flex-direction: column;
   }
 `;
 
@@ -180,10 +185,57 @@ const DataText = styled.p`
   }
 `;
 
+const LeftColumn = styled.div`
+  padding: 0 0.5rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 730px) {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+`;
+
+const PostContainer = styled.div`
+  padding: 0 1rem;
+
+  @media screen and (max-width: 730px) {
+    margin: 2rem 0;
+    flex: 1;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 410px) {
+    width: 100%;
+  }
+`;
+
+const StatsContainer = styled.div`
+  margin-top: 2rem;
+
+  @media screen and (max-width: 730px) {
+    flex: 1;
+    margin-top: 0;
+  }
+`;
 
 const RunFeed = styled.div`
   width: 70%;
   margin: 1rem auto;
+  flex: 3 1 auto;
 
   @media screen and (max-width: 1100px) {
     width: 80%;
