@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Grid, List, Placeholder, Loader } from 'semantic-ui-react';
+import { List, Placeholder, Loader } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import { FETCH_PBEST_QUERY } from '../../util/graphql';

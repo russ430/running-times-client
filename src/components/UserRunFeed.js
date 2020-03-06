@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Transition, Item, Loader } from 'semantic-ui-react';
-import styled from 'styled-components';
 
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 import TimeCard from './TimeCard';

@@ -10,7 +10,7 @@ function CommentButton({ data: { commentCount, id }}) {
   return(
     <MyPopup content="Comment on post">
       <Container>
-        <Button to="/login">
+        <Button to={`/times/${id}`}>
           <Icon name='comments' color="teal"/>
         </Button>
         <span>{commentCount}</span>

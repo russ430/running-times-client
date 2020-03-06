@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Grid, Transition, Card, Item, Loader, Icon } from 'semantic-ui-react';
+import { Transition, Card, Item, Loader, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import Register from './Register';
