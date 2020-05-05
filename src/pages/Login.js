@@ -17,6 +17,7 @@ export default function Login(props) {
 
   const changedInputHandler = e => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    setErrors({});
   };
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
@@ -79,8 +80,8 @@ export default function Login(props) {
         </div>
       )}
       <Register>
-        Don't have an account yet? Sign up for one{' '}
-        <Link to="/register">here</Link>.
+        Don't have an account yet? Sign up for one
+        <Link to="/register"> here</Link>.
       </Register>
     </Container>
   );
