@@ -12,10 +12,22 @@ import DeleteButton from './DeleteButton';
 import avatars from './avatars';
 import { FETCH_USER_DATA_QUERY } from '../util/graphql';
 
-function TimeCard({ data: { id, body, miles, time, username, likeCount, likes, commentCount, createdAt }}) {
+export default function TimeCard({
+  data: {
+    id,
+    body,
+    miles,
+    time,
+    username,
+    likeCount,
+    likes,
+    commentCount,
+    createdAt,
+  },
+}) {
   const { user } = useContext(AuthContext);
-  const { data } = useQuery(FETCH_USER_DATA_QUERY, { 
-    variables: { username }
+  const { data } = useQuery(FETCH_USER_DATA_QUERY, {
+    variables: { username },
   });
 
   const windowScroll = () => {
@@ -24,48 +36,65 @@ function TimeCard({ data: { id, body, miles, time, username, likeCount, likes, c
 
   return (
     <Card>
-      {!data ? <Loader size="big" inline="centered" /> : (
+      {!data ? (
+        <Loader size="big" inline="centered" />
+      ) : (
         <>
-        <Content>
-          <LeftBlock>
-            <ImageLink to={`/profile/${username}`} onClick={windowScroll}>
-              <Avatar>
-                <AvatarImage src={avatars[data.getUserData.avatar]} alt={`${username}'s avatar`} />
-                <CaptionContainer>
-                  <ImageCaption>{miles.length < 2 ? miles : parseFloat(miles).toFixed(1)}</ImageCaption>
-                </CaptionContainer>
-              </Avatar>
-            </ImageLink>
-          </LeftBlock>
-          <RightBlock>
-            <Header>
-              <Username 
-                to={`/profile/${username}`}
-                onClick={windowScroll}>
+          <Content>
+            <LeftBlock>
+              <ImageLink to={`/profile/${username}`} onClick={windowScroll}>
+                <Avatar>
+                  <AvatarImage
+                    src={avatars[data.getUserData.avatar]}
+                    alt={`${username}'s avatar`}
+                  />
+                  <CaptionContainer>
+                    <ImageCaption>
+                      {miles.length < 2 ? miles : parseFloat(miles).toFixed(1)}
+                    </ImageCaption>
+                  </CaptionContainer>
+                </Avatar>
+              </ImageLink>
+            </LeftBlock>
+            <RightBlock>
+              <Header>
+                <Username to={`/profile/${username}`} onClick={windowScroll}>
                   {data.getUserData.name}{' '}
-                  <Meta>@{username} | {moment(createdAt).fromNow()}</Meta>
-              </Username>
-            </Header>
-            <ContentBody>{body}</ContentBody>
-            <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0' }}>
-              <ContentExtra>
-                <Label>
-                  <Left>{miles} miles</Left><Right>{time}</Right>
-                </Label>
-                <div style={{ display: 'flex' }}>
-                  <LikeButton user={user} time={{ id, likeCount, likes }}/>
-                  <CommentButton data={{ commentCount, id }} />
-                </div>
-              </ContentExtra>
-            </div>
-            {user && user.username === username && <DeleteButton timeId={id} />}
-          </RightBlock>
-        </Content>
+                  <Meta>
+                    @{username} | {moment(createdAt).fromNow()}
+                  </Meta>
+                </Username>
+              </Header>
+              <ContentBody>{body}</ContentBody>
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '0',
+                  left: '0',
+                  right: '0',
+                }}
+              >
+                <ContentExtra>
+                  <Label>
+                    <Left>{miles} miles</Left>
+                    <Right>{time}</Right>
+                  </Label>
+                  <div style={{ display: 'flex' }}>
+                    <LikeButton user={user} time={{ id, likeCount, likes }} />
+                    <CommentButton data={{ commentCount, id }} />
+                  </div>
+                </ContentExtra>
+              </div>
+              {user && user.username === username && (
+                <DeleteButton timeId={id} />
+              )}
+            </RightBlock>
+          </Content>
         </>
       )}
     </Card>
-  )
-};
+  );
+}
 
 const Card = styled.div`
   width: 100%;
@@ -246,5 +275,3 @@ const Right = styled(Left)`
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.8;
 `;
-
-export default TimeCard;

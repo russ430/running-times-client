@@ -7,45 +7,45 @@ import styled from 'styled-components';
 
 import MyPopup from '../util/MyPopup';
 
-function LikeButton({ user,  time: { id, likeCount, likes } }) {
+export default function LikeButton({ user, time: { id, likeCount, likes } }) {
   const [liked, setLiked] = useState(false);
-  
+
   useEffect(() => {
-    if(user && likes.find(like => like.username === user.username)) {
-      setLiked(true)
+    if (user && likes.find(like => like.username === user.username)) {
+      setLiked(true);
     } else setLiked(false);
   }, [user, likes]);
 
   const [likeTime] = useMutation(LIKE_TIME_MUTATION, {
     variables: { timeId: id },
-    onError: error => console.log(error)
+    onError: error => console.log(error),
   });
 
   const likeButton = user ? (
     liked ? (
       <Button>
-        <Icon name='heart' color="blue"/>
+        <Icon name="heart" color="blue" />
       </Button>
     ) : (
       <Button>
-        <Icon name='heart' color="grey"/>
+        <Icon name="heart" color="grey" />
       </Button>
     )
   ) : (
-    <Button to="/login" color='blue'>
-      <Icon name='heart' />
+    <Button to="/login" color="blue">
+      <Icon name="heart" />
     </Button>
-  )
+  );
 
   return (
-    <MyPopup content={liked ? "Unlike" : "Like"}>
+    <MyPopup content={liked ? 'Unlike' : 'Like'}>
       <Container onClick={likeTime} isLiked={liked}>
         {likeButton}
         <span>{likeCount}</span>
       </Container>
     </MyPopup>
   );
-};
+}
 
 const LIKE_TIME_MUTATION = gql`
   mutation likeTime($timeId: ID!) {
@@ -66,7 +66,7 @@ const Container = styled.div`
   display: flex;
 
   span {
-    color: ${props => props.isLiked ? '#2185d0' : 'grey'};
+    color: ${props => (props.isLiked ? '#2185d0' : 'grey')};
     font-size: 1.2rem;
 
     @media screen and (max-width: 600px) {
@@ -87,5 +87,3 @@ const Button = styled(Link)`
     }
   }
 `;
-
-export default LikeButton;

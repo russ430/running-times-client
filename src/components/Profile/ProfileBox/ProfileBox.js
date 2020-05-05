@@ -9,13 +9,13 @@ import avatars from '../../avatars';
 import BasicStats from '../BasicStats';
 import Placeholders from './Placeholders';
 
-function ProfileBox({ username }) {
-  const { loading, data } = useQuery(FETCH_USER_DATA_QUERY, { 
-    variables: { username }
+export default function ProfileBox({ username }) {
+  const { loading, data } = useQuery(FETCH_USER_DATA_QUERY, {
+    variables: { username },
   });
 
   let userData = null;
-  if(data) {
+  if (data) {
     userData = data.getUserData;
   }
 
@@ -27,23 +27,27 @@ function ProfileBox({ username }) {
         </Placeholder>
       ) : (
         <Image>
-          <img style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 'inherit', border: 'none' }} src={avatars[userData.avatar]} alt="avatar"/> 
+          <Avatar src={avatars[userData.avatar]} alt="avatar" />
         </Image>
       )}
       <Content>
-        {loading ? <Placeholders /> : (
+        {loading ? (
+          <Placeholders />
+        ) : (
           <>
             <div className="content-respon">
               <Header>{userData.name}</Header>
               <Meta>
-                <span className='date'>Joined {moment(userData.createdAt).format("MMMM YYYY")}</span>
+                <span className="date">
+                  Joined {moment(userData.createdAt).format('MMMM YYYY')}
+                </span>
               </Meta>
-              <BasicStats username={username}/>
+              <BasicStats username={username} />
             </div>
-            <ExtraRespon>
-              <Icon name='map marker' />
+            <ResponsiveExtra>
+              <Icon name="map marker" />
               {userData.location}
-            </ExtraRespon>
+            </ResponsiveExtra>
           </>
         )}
       </Content>
@@ -55,13 +59,13 @@ function ProfileBox({ username }) {
         </Content>
       ) : (
         <Extra>
-          <Icon name='map marker' />
+          <Icon name="map marker" />
           {userData.location}
         </Extra>
       )}
-  </Card>
-  )
-};
+    </Card>
+  );
+}
 
 const Card = styled.div`
   max-width: 100%;
@@ -73,7 +77,7 @@ const Card = styled.div`
   background: #fff;
   padding: 0;
   border: none;
-  border-radius: .28571429rem;
+  border-radius: 0.28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 
   @media screen and (max-width: 800px) {
@@ -112,17 +116,25 @@ const Image = styled.div`
   }
 `;
 
+const Avatar = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: inherit,
+  border: none;
+`;
+
 const Content = styled.div`
   flex-grow: 1;
   border: none;
-  border-top: 1px solid rgba(34,36,38,.1);
+  border-top: 1px solid rgba(34, 36, 38, 0.1);
   background: 0 0;
   margin: 0;
   padding: 1em 1em;
   box-shadow: none;
   font-size: 1em;
   border-radius: 0;
-  
+
   .content-respon {
     padding: 0;
 
@@ -151,24 +163,24 @@ const Meta = styled.div`
 
 const Extra = styled.div`
   max-width: 100%;
-  min-height: 0!important;
+  min-height: 0 !important;
   flex-grow: 0;
-  border-top: 1px solid rgba(0,0,0,.05)!important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
   position: static;
   background: 0 0;
   width: auto;
   margin: 0 0;
-  padding: .75em 1em;
+  padding: 0.75em 1em;
   top: 0;
   left: 0;
-  color: rgba(0,0,0,.4);
+  color: rgba(0, 0, 0, 0.4);
 
   @media screen and (max-width: 800px) {
     display: none;
   }
 `;
 
-const ExtraRespon = styled(Extra)`
+const ResponsiveExtra = styled(Extra)`
   @media screen and (max-width: 800px) {
     display: block;
   }
@@ -177,5 +189,3 @@ const ExtraRespon = styled(Extra)`
     display: none;
   }
 `;
-
-export default ProfileBox;

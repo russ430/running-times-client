@@ -5,13 +5,12 @@ import styled from 'styled-components';
 
 import MyPopup from '../util/MyPopup';
 
-function CommentButton({ data: { commentCount, id }}) {
-
-  return(
+export default function CommentButton({ data: { commentCount, id } }) {
+  return (
     <MyPopup content="Comment on post">
       <Container>
         <Button to={`/times/${id}`}>
-          <Icon name='comments' color="teal"/>
+          <Icon name="comments" color="teal" />
         </Button>
         <span>{commentCount}</span>
       </Container>
@@ -27,7 +26,7 @@ const Container = styled.div`
   span {
     color: #96ddd9;
     font-size: 1.2rem;
-    
+
     @media screen and (max-width: 600px) {
       font-size: 1rem;
     }
@@ -46,5 +45,3 @@ const Button = styled(Link)`
     }
   }
 `;
-
-export default CommentButton;

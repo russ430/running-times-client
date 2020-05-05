@@ -4,32 +4,30 @@ import styled from 'styled-components';
 
 import { AuthContext } from '../context/auth';
 
-function MenuBar() {
+export default function MenuBar() {
   const { user, logout } = useContext(AuthContext);
 
   return (
     <Menu>
-      <div style={{ padding: '1rem 0'}}>
-        <MenuItem to='/'>Home</MenuItem>
+      <div style={{ padding: '1rem 0' }}>
+        <MenuItem to="/">Home</MenuItem>
         {user ? (
           <MenuItem to={`/profile/${user.username}`}>My Profile</MenuItem>
         ) : null}
       </div>
       <div>
-        {/* if the user is logged in, render a log out button.
-        if the user is logged out, render the login button */}
         {user ? (
           <MenuItem onClick={logout}>Logout</MenuItem>
         ) : (
           <>
-            <MenuItem to='/login'>Login</MenuItem>
-            <MenuItem to='/register'>Register</MenuItem>
+            <MenuItem to="/login">Login</MenuItem>
+            <MenuItem to="/register">Register</MenuItem>
           </>
         )}
       </div>
     </Menu>
   );
-};
+}
 
 const Menu = styled.div`
   display: flex;
@@ -46,12 +44,10 @@ const Menu = styled.div`
 
 const MenuItem = styled(Link)`
   font-size: 1.1rem;
-  color: hsla(0,0%,100%,.9);
+  color: hsla(0, 0%, 100%, 0.9);
   padding: 1rem 1.1rem;
 
   &:not(:last-child) {
-    border-right: 1px solid rgba(34,36,38,.15);
+    border-right: 1px solid rgba(34, 36, 38, 0.15);
   }
 `;
-
-export default MenuBar;

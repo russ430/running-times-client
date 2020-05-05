@@ -1,8 +1,7 @@
 import React from 'react';
 import { Placeholder } from 'semantic-ui-react';
 
-function Placeholders() {
-
+export default function Placeholders() {
   return (
     <Placeholder>
       <Placeholder.Header>
@@ -22,7 +21,5 @@ function Placeholders() {
         <Placeholder.Line length="medium" />
       </Placeholder.Paragraph>
     </Placeholder>
-  )
-};
-
-export default Placeholders;
+  );
+}

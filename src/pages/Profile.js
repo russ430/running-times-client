@@ -5,8 +5,8 @@ import ProfileBox from '../components/Profile/ProfileBox/ProfileBox';
 import PersonalBests from '../components/Profile/PersonalBests';
 import UserRunFeed from '../components/UserRunFeed';
 
-function Profile(props) {
-  const username = props.match.params.username
+export default function Profile(props) {
+  const { username } = props.match.params;
 
   return (
     <Container>
@@ -14,14 +14,15 @@ function Profile(props) {
         <ProfileBox username={username} />
       </Left>
       <Right>
-        <h1 style={{ textAlign: 'center', margin: '0', padding: '1rem 0' }}>Personal Bests</h1>
-        <PersonalBests username={username} />  
+        <h1 style={{ textAlign: 'center', margin: '0', padding: '1rem 0' }}>
+          Personal Bests
+        </h1>
+        <PersonalBests username={username} />
         <UserRunFeed username={username} />
       </Right>
     </Container>
-
   );
-};
+}
 
 const Container = styled.div`
   display: flex;
@@ -43,5 +44,3 @@ const Right = styled.div`
     padding: 0;
   }
 `;
-
-export default Profile;
